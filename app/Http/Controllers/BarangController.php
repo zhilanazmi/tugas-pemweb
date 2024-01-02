@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Barang;
+use App\Models\Ketagori;
 use Illuminate\Http\Request;
 
 class BarangController extends Controller
@@ -13,14 +14,16 @@ class BarangController extends Controller
     }
 
     public function tambah() {
-        return view('barang.form');
+        $kategori = Ketagori::get();
+
+        return view('barang.form', ['kategori'=>$kategori]);
     }
 
     public function simpan(Request $request) {
         $data = [
             'kode_barang' => $request->kode_barang,
             'nama_barang' => $request->nama_barang,
-            'kategori_barang' => $request->kategori_barang,
+            'id_kategori' => $request->id_kategori,
             'harga' => $request->harga,
             'jumlah' => $request->jumlah,
         ];
@@ -32,14 +35,16 @@ class BarangController extends Controller
 
     public function edit($id) {
         $barang = Barang::where('id', $id)->first();
-        return view('barang.form', ['barang' => $barang]);
+        $kategori = Ketagori::get();
+
+        return view('barang.form', ['barang' => $barang, 'kategori' => $kategori]);
     }
 
     public function update($id, Request $request) {
         $data = [
             'kode_barang' => $request->kode_barang,
             'nama_barang' => $request->nama_barang,
-            'kategori_barang' => $request->kategori_barang,
+            'id_kategori' => $request->id_kategori,
             'harga' => $request->harga,
             'jumlah' => $request->jumlah,
         ];
