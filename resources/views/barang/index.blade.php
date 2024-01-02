@@ -9,6 +9,9 @@
         <h6 class="m-0 font-weight-bold text-primary">Data Barang</h6>
     </div>
     <div class="card-body">
+        @if (auth()->user()->level == 'Kasir')
+        <a href="{{ route('barang.tambah') }}" class="btn btn-primary mb-3">Beli Barang</a>
+        @endif
         @if (auth()->user()->level == 'Admin')
         <a href="{{ route('barang.tambah') }}" class="btn btn-primary mb-3">Tambah Barang</a>
         @endif
