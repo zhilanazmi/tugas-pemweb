@@ -23,12 +23,14 @@
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Barang</span></a>
     </li>
-
+    
+    @if (auth()->user()->level == 'Admin')
     <li class="nav-item">
         <a class="nav-link" href="{{ route('kategori') }}">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Kategori</span></a>
     </li>
+    @endif
 
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">
